@@ -1,0 +1,61 @@
+﻿<Window x:Class="TopLolCode.ParentWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TopLolCode"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="ParentWindow" Height="600" Width="800">
+    <Grid x:Name="_main_grid">
+
+
+        <GroupBox x:Name="groupBox"  Header="Создать правило" HorizontalAlignment="Left" Height="549" Margin="10,10,0,0" VerticalAlignment="Top" Width="378" >
+            <Grid Margin="10,0,-10,0">
+                <TextBlock Text="Начало роботы правила"  Margin="10,10,10,0"     FontSize="22" Height="40" VerticalAlignment="Top" FontWeight="Normal" TextAlignment="Center"/>
+                <TextBlock Text="Конец роботы правила"   Margin="10,100,10,0"    FontSize="22" Height="40" VerticalAlignment="Top" FontWeight="Normal" TextAlignment="Center"/>
+                <TextBlock Text="Продолжытельность"      Margin="10,190,0,0"     FontSize="22" HorizontalAlignment="Left" Width="210" Height="40" VerticalAlignment="Top" FontWeight="Normal"/>
+                <TextBox x:Name="textBox" Height="40"    Margin="0,190,10,0"     TextWrapping="Wrap" Text="60" VerticalAlignment="Top" HorizontalAlignment="Right" Width="77" FontSize="22" MaxLines="1" TextAlignment="Center" FontWeight="Normal" UndoLimit="10"/>
+
+                <xctk:DateTimePicker x:Name="_start_DateTime" Margin="0,55,10,418" HorizontalAlignment="Right" Width="346" FontWeight="Normal" RenderTransformOrigin="0.485,-0.05"/>
+                <xctk:DateTimePicker x:Name="_end_DateTime" Margin="10,145,10,0" Height="40" VerticalAlignment="Top" FontWeight="Normal"/>
+
+                <GroupBox x:Name="_days_of_the_week" Header="Выбрать дни недели" HorizontalAlignment="Left" Height="229" Margin="10,235,0,0" VerticalAlignment="Top" Width="245" FontSize="20">
+                    <StackPanel >
+                        <ToggleButton x:Name="_Monday"     Content="Понедельник"   />
+                        <ToggleButton x:Name="_Tuesday"    Content="Вторник"       />
+                        <ToggleButton x:Name="_Wednesday"  Content="Среда"         />
+                        <ToggleButton x:Name="_Thursday"   Content="Четверг"       />
+                        <ToggleButton x:Name="_Friday"     Content="Пятница"       />
+                        <ToggleButton x:Name="_Saturday"   Content="Суббота"       />
+                        <ToggleButton x:Name="_Sunday"     Content="Воскресенье"   />
+                    </StackPanel>
+
+                </GroupBox>
+                <Button x:Name="button" HorizontalAlignment="Left" Margin="260,267,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" >
+                    <TextBlock Text="Сохранить правило" TextWrapping="Wrap" TextAlignment="Center"/>
+                </Button>
+
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="groupBox1" Header="Список правил" HorizontalAlignment="Left" Height="259" Margin="393,10,0,0" VerticalAlignment="Top" Width="389"/>
+        <GroupBox x:Name="groupBox2" Header="Лог" HorizontalAlignment="Left" Height="285" Margin="393,274,0,0" VerticalAlignment="Top" Width="389"/>
+
+
+    </Grid>
+    <Window.Resources>
+        <Style TargetType="ToggleButton">
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="Height"            Value="24" />
+            <Setter Property="Margin"            Value="0,2" />
+            <Setter Property="FontSize"          Value="16" />
+            <Setter Property="FontWeight"        Value="Normal" />
+            <Setter Property="IsChecked"         Value="True"/>
+            <Setter Property="Background"        Value="#FF1A8509"/>
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+    </Window.Resources>
+</Window>

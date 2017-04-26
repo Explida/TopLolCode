@@ -1,0 +1,22 @@
+﻿<Window x:Class="TopLolCode.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TopLolCode"
+        mc:Ignorable="d"
+        Title="Hello World" Height="250" Width="325" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Button x:Name="btn_SingIn" Command="New" Content="Button" Margin="100,20,100,56" Grid.Row="1">
+            <Button.CommandBindings>
+                <CommandBinding Command="New" Executed="Exit_Executed"/>
+            </Button.CommandBindings>
+        </Button>
+        <TextBox x:Name="tb_pass" Margin="80,56,80,20" TextWrapping="Wrap" FontSize="18" MaxLines="1" TextAlignment="Center"/>
+
+    </Grid>
+</Window>
