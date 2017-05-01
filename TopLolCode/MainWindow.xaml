@@ -5,18 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopLolCode"
         mc:Ignorable="d"
-        Title="Hello World" Height="250" Width="325" ResizeMode="NoResize">
+        Title="Hello World" Height="250" Width="325">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="btn_SingIn" Command="New" Content="Button" Margin="100,20,100,56" Grid.Row="1">
+        <Button x:Name="btn_SingIn" Command="New" Content="Button"  Grid.Row="2" Grid.RowSpan="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="1" HorizontalContentAlignment="Center">
             <Button.CommandBindings>
                 <CommandBinding Command="New" Executed="Exit_Executed"/>
             </Button.CommandBindings>
         </Button>
-        <TextBox x:Name="tb_pass" Margin="80,56,80,20" TextWrapping="Wrap" FontSize="18" MaxLines="1" TextAlignment="Center"/>
+        <TextBox x:Name="tb_pass"  TextWrapping="Wrap" FontSize="16" MaxLines="1" TextAlignment="Center" Grid.Row="1" Grid.RowSpan="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"  Grid.Column="1" MaxLength="10"/>
 
     </Grid>
 </Window>

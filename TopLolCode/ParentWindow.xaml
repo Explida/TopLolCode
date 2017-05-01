@@ -8,46 +8,74 @@
         mc:Ignorable="d"
         Title="ParentWindow" Height="600" Width="800">
     <Grid x:Name="_main_grid">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
+        <GroupBox x:Name="groupBox"  Header="Создать правило" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="40*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Text="Начало роботы правила"  FontSize="22" FontWeight="Normal" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock Text="Конец роботы правила"   FontSize="22" VerticalAlignment="Center" FontWeight="Normal" TextAlignment="Center" Grid.Row="2" HorizontalAlignment="Center"/>
+                <TextBlock Text="Продолжытельность(мин)" FontSize="22" HorizontalAlignment="Left"  VerticalAlignment="Center" FontWeight="Normal" Grid.Row="4"/>
+                <TextBox x:Name="textBox"     Text="60" HorizontalAlignment="Right"  FontSize="22" MaxLines="1" TextAlignment="Center" FontWeight="Normal" UndoLimit="10" Grid.Row="4" VerticalAlignment="Center"/>
 
-        <GroupBox x:Name="groupBox"  Header="Создать правило" HorizontalAlignment="Left" Height="549" Margin="10,10,0,0" VerticalAlignment="Top" Width="378" >
-            <Grid Margin="10,0,-10,0">
-                <TextBlock Text="Начало роботы правила"  Margin="10,10,10,0"     FontSize="22" Height="40" VerticalAlignment="Top" FontWeight="Normal" TextAlignment="Center"/>
-                <TextBlock Text="Конец роботы правила"   Margin="10,100,10,0"    FontSize="22" Height="40" VerticalAlignment="Top" FontWeight="Normal" TextAlignment="Center"/>
-                <TextBlock Text="Продолжытельность"      Margin="10,190,0,0"     FontSize="22" HorizontalAlignment="Left" Width="210" Height="40" VerticalAlignment="Top" FontWeight="Normal"/>
-                <TextBox x:Name="textBox" Height="40"    Margin="0,190,10,0"     TextWrapping="Wrap" Text="60" VerticalAlignment="Top" HorizontalAlignment="Right" Width="77" FontSize="22" MaxLines="1" TextAlignment="Center" FontWeight="Normal" UndoLimit="10"/>
+                <xctk:DateTimePicker x:Name="_start_DateTime" FontWeight="Normal" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <xctk:DateTimePicker x:Name="_end_DateTime"   FontWeight="Normal" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                <xctk:DateTimePicker x:Name="_start_DateTime" Margin="0,55,10,418" HorizontalAlignment="Right" Width="346" FontWeight="Normal" RenderTransformOrigin="0.485,-0.05"/>
-                <xctk:DateTimePicker x:Name="_end_DateTime" Margin="10,145,10,0" Height="40" VerticalAlignment="Top" FontWeight="Normal"/>
-
-                <GroupBox x:Name="_days_of_the_week" Header="Выбрать дни недели" HorizontalAlignment="Left" Height="229" Margin="10,235,0,0" VerticalAlignment="Top" Width="245" FontSize="20">
-                    <StackPanel >
-                        <ToggleButton x:Name="_Monday"     Content="Понедельник"   />
-                        <ToggleButton x:Name="_Tuesday"    Content="Вторник"       />
-                        <ToggleButton x:Name="_Wednesday"  Content="Среда"         />
-                        <ToggleButton x:Name="_Thursday"   Content="Четверг"       />
-                        <ToggleButton x:Name="_Friday"     Content="Пятница"       />
-                        <ToggleButton x:Name="_Saturday"   Content="Суббота"       />
-                        <ToggleButton x:Name="_Sunday"     Content="Воскресенье"   />
-                    </StackPanel>
-
+                <GroupBox x:Name="_days_of_the_week" Header="Выбрать дни недели" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" FontSize="20" Grid.Row="5">
+                    <Grid >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="2"/>
+                        </Grid.RowDefinitions>
+                        <ToggleButton x:Name="_Monday"     Content="Понедельник"    Grid.Row="0" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="_Tuesday"    Content="Вторник"        Grid.Row="2" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="_Wednesday"  Content="Среда"          Grid.Row="4" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="_Thursday"   Content="Четверг"        Grid.Row="6" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="_Friday"     Content="Пятница"        Grid.Row="8" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="_Saturday"   Content="Суббота"        Grid.Row="10" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="_Sunday"     Content="Воскресенье"    Grid.Row="12" VerticalAlignment="Center"/>
+                    </Grid>
                 </GroupBox>
-                <Button x:Name="button" HorizontalAlignment="Left" Margin="260,267,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" >
+                <Button x:Name="button" HorizontalAlignment="Left" Margin="260,35,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" Grid.Row="5" >
                     <TextBlock Text="Сохранить правило" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
 
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="groupBox1" Header="Список правил" HorizontalAlignment="Left" Height="259" Margin="393,10,0,0" VerticalAlignment="Top" Width="389"/>
-        <GroupBox x:Name="groupBox2" Header="Лог" HorizontalAlignment="Left" Height="285" Margin="393,274,0,0" VerticalAlignment="Top" Width="389"/>
+        <GroupBox x:Name="groupBox1" Header="Список правил" Grid.Column="1"      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <GroupBox x:Name="groupBox2" Header="Лог" Grid.Column="1" Grid.Row="1"   HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
 
 
     </Grid>
     <Window.Resources>
         <Style TargetType="ToggleButton">
             <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="Height"            Value="24" />
-            <Setter Property="Margin"            Value="0,2" />
             <Setter Property="FontSize"          Value="16" />
             <Setter Property="FontWeight"        Value="Normal" />
             <Setter Property="IsChecked"         Value="True"/>
