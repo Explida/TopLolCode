@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace TopLolCode
+namespace TopLolCode.Views
 {
     /// <summary>
-    /// Interaction logic for ChildWindow.xaml
+    /// Interaction logic for FirstRunWindow.xaml
     /// </summary>
-    public partial class ChildWindow : Window
+    public partial class FirstRunWindow : Window
     {
-        public ChildWindow()
+        public FirstRunWindow()
         {
             InitializeComponent();
         }

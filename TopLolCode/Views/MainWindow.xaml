@@ -1,11 +1,18 @@
-﻿<Window x:Class="TopLolCode.MainWindow"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TopLolCode"
+        xmlns:ViewModels="clr-namespace:TopLolCode.ViewModels" 
+        x:Class="TopLolCode.Views.MainWindow"
         mc:Ignorable="d"
         Title="Hello World" Height="250" Width="325">
+
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -19,12 +26,9 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Button x:Name="btn_SingIn" Command="New" Content="Button"  Grid.Row="2" Grid.RowSpan="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="1" HorizontalContentAlignment="Center">
-            <Button.CommandBindings>
-                <CommandBinding Command="New" Executed="Exit_Executed"/>
-            </Button.CommandBindings>
-        </Button>
-        <TextBox x:Name="tb_pass"  TextWrapping="Wrap" FontSize="16" MaxLines="1" TextAlignment="Center" Grid.Row="1" Grid.RowSpan="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"  Grid.Column="1" MaxLength="10"/>
+
+        <Button  x:Name="btn_SingIn" Command="{Binding SingIN}" Content="SingIN" Grid.Row="2" Grid.RowSpan="1" VerticalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="1" HorizontalContentAlignment="Center" />
+        <TextBox x:Name="tb_pass"    Text="{Binding BtnText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  MaxLines="1" TextAlignment="Center" Grid.Row="1" Grid.RowSpan="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2"  Grid.Column="1" MaxLength="10" />
 
     </Grid>
 </Window>
