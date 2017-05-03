@@ -8,18 +8,30 @@ using System.IO;
 
 namespace TopLolCode.Models
 {
-    class UserRegulations
+    class Data
     {
         private List<UserType> regulations;
 
-        public static UserRegulations DeserializeUserRegulations()
+        public Data()
+        {
+            regulations = new List<UserType>();
+        }
+
+
+
+        public void AddRegulations()
+        {
+
+        }
+
+        public static Data DeserializeUserRegulations()
         {
             try
             {
-                using (var sr = new StreamReader("Regulations.xml"))
+                using (var sr = new StreamReader("Data.xml"))
                 {
-                    var ser = new XmlSerializer(typeof(UserRegulations));
-                    var t = (UserRegulations)ser.Deserialize(sr);
+                    var ser = new XmlSerializer(typeof(Data));
+                    var t = (Data)ser.Deserialize(sr);
                     return t;
                 }
             }
@@ -33,9 +45,9 @@ namespace TopLolCode.Models
         {
             try
             {
-                using (var sw = new StreamWriter("Regulations.xml"))
+                using (var sw = new StreamWriter("Data.xml"))
                 {
-                    var deser = new XmlSerializer(typeof(UserRegulations));
+                    var deser = new XmlSerializer(typeof(Data));
                     deser.Serialize(sw, this);
 
                 }

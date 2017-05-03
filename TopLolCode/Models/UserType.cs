@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TopLolCode
 {
     class UserType
     {
-        //public DateTime StartDate;
-        //public DateTime EndDate;
-        //public DateTime LastAccessDate;
-        //public int      DurationTime;
-        public string[] Days = new string[7];
+        public string   ID { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public int DurationTime { get; set; }
+        public List<string> Days { get; set; }
     }
 }

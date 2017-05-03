@@ -90,7 +90,7 @@
     </Page>
     <Compile Include="Models\Command.cs" />
     <Compile Include="Models\Languages.cs" />
-    <Compile Include="Models\UserRegulations.cs" />
+    <Compile Include="Models\Data.cs" />
     <Compile Include="Models\UserTimer.cs" />
     <Compile Include="Models\UserType.cs" />
     <Page Include="Views\ChildWindow.xaml">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,46 +8,49 @@ using System.Windows.Threading;
 
 namespace TopLolCode
 {
-    static class UserTimer
+    class UserTimer
     {
-        //private static DateTime _startTime;
-        //private static DateTime _endTime;
-        private static int _durationTime;
+        private int _durationTime = 0;
         
-        public static int DurationTime
+        public int DurationTime
         {
-            get { return (int)(_durationTime/60); }
-            set { _durationTime = value*60; } 
+            get { return (int)(_durationTime/60); }     //convert to min
+            set { _durationTime = value*60; }           //convert to sec
+        }
+        
+        public UserTimer()
+        {
+            _timer = new DispatcherTimer();
+            _timer.Interval = new TimeSpan(0, 0, 1);
+            _timer.Tick += _timer_Tick;
+            
         }
 
-        //public static void StarTimer()
-        //{
-
-        //}
-
-        public static void TimerEnable()
+        public void TimerStart(int min)
         {
-            //_timerWork = true;
-            _timer.IsEnabled = true;
+            _timer.Start();
         }
 
-        public static void TimerDisable()
+        public void TimerStop()
         {
-            //_timerWork = false;
-            _timer.IsEnabled = false;
+            _timer.Stop();
         }
 
-        private static void _timer_Tick(object sender, EventArgs e)
+        private void _timer_Tick(object sender, EventArgs e)
         {
             if (_timerWork)
             {
-                if (_durationTime > 0) _durationTime--;
-                // else disable
+                if (_durationTime >= 0) _durationTime--;
+                else
+                {
+                    Process.Start("notepad.exe");
+                    _timer.Stop();
+                }
             }
         }
 
-        private static DispatcherTimer _timer = new DispatcherTimer(interval: new TimeSpan(0, 0, 1), dispatcher: null, callback: _timer_Tick, priority: DispatcherPriority.Background);
-        private static bool _timerWork = false;
+        private DispatcherTimer _timer;
+        private bool _timerWork = true;
 
     }
 }

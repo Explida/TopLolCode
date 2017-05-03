@@ -29,14 +29,18 @@ namespace TopLolCode
             //if (!Directory.Exists("Data"))
             //{
             //    Directory.CreateDirectory("Data");
+            //    if (!File.Exists("Data/Data.xml"))
+            //    {
+            //        File.Create("Data/Data.xml");
+
+            //        var firstWindow = new FirstRunWindow();
+            //        app.Run(firstWindow);
+            //    }
             //}
-            //if (!File.Exists("Data/Regulations.xml"))
-            //{
-            //    File.Create("Data/Regulations.xml");
-                
-            //}
-            var firstWindow = new FirstRunWindow();
-            app.Run(firstWindow);
+            
+
+            var mainWindow = new MainWindow();
+            app.Run(mainWindow);
         }
     }
 }

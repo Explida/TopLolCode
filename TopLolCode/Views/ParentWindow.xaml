@@ -25,17 +25,19 @@
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="10*"/>
-                    <RowDefinition Height="40*"/>
+                    <RowDefinition Height="10*"/>
+                    <RowDefinition Height="45*"/>
                 </Grid.RowDefinitions>
-                <TextBlock Text="Начало роботы правила"  FontSize="22" FontWeight="Normal" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="Конец роботы правила"   FontSize="22" VerticalAlignment="Center" FontWeight="Normal" TextAlignment="Center" Grid.Row="2" HorizontalAlignment="Center"/>
-                <TextBlock Text="Продолжытельность(мин)" FontSize="22" HorizontalAlignment="Left"  VerticalAlignment="Center" FontWeight="Normal" Grid.Row="4"/>
-                <TextBox x:Name="textBox"     Text="60" HorizontalAlignment="Right"  FontSize="22" MaxLines="1" TextAlignment="Center" FontWeight="Normal" UndoLimit="10" Grid.Row="4" VerticalAlignment="Center"/>
+                <TextBlock Text="ID правила"  FontSize="22" FontWeight="Normal" TextAlignment="Center" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center"/>
+                <TextBlock Text="Начало роботы правила"  FontSize="22" FontWeight="Normal" TextAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
+                <TextBlock Text="Конец роботы правила"   FontSize="22" VerticalAlignment="Center" FontWeight="Normal" TextAlignment="Center" Grid.Row="3" HorizontalAlignment="Center"/>
+                <TextBlock Text="Продолжытельность(мин)" FontSize="22" HorizontalAlignment="Left"  VerticalAlignment="Center" FontWeight="Normal" Grid.Row="5"/>
+                <TextBox x:Name="textBox"     Text="60" HorizontalAlignment="Right"  FontSize="22" MaxLines="1" TextAlignment="Center" FontWeight="Normal" UndoLimit="10" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MinWidth="40" MinHeight="40"/>
 
-                <xctk:DateTimePicker x:Name="_start_DateTime" FontWeight="Normal" Grid.Row="1" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <xctk:DateTimePicker x:Name="_end_DateTime"   FontWeight="Normal" Grid.Row="3" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <xctk:DateTimePicker x:Name="_start_DateTime" FontWeight="Normal" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <xctk:DateTimePicker x:Name="_end_DateTime"   FontWeight="Normal" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-                <GroupBox x:Name="_days_of_the_week" Header="Выбрать дни недели" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" FontSize="20" Grid.Row="5">
+                <GroupBox x:Name="_days_of_the_week" Header="Выбрать дни недели" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" FontSize="20" Grid.Row="6">
                     <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
@@ -62,14 +64,15 @@
                         <ToggleButton x:Name="_Sunday"     Content="Воскресенье"    Grid.Row="12" VerticalAlignment="Center"/>
                     </Grid>
                 </GroupBox>
-                <Button x:Name="button" HorizontalAlignment="Left" Margin="260,35,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" Grid.Row="5" >
+                <Button x:Name="button" HorizontalAlignment="Left" Margin="260,35,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" Grid.Row="6" >
                     <TextBlock Text="Сохранить правило" TextWrapping="Wrap" TextAlignment="Center"/>
                 </Button>
+                <TextBox HorizontalAlignment="Right" Height="23"  TextWrapping="Wrap"  VerticalAlignment="Center" MinWidth="40" MinHeight="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
 
             </Grid>
         </GroupBox>
-        <GroupBox x:Name="groupBox1" Header="Список правил" Grid.Column="1"      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
-        <GroupBox x:Name="groupBox2" Header="Лог" Grid.Column="1" Grid.Row="1"   HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <GroupBox Header="Список правил" Grid.Column="1"      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+        <GroupBox Header="Лог" Grid.Column="1" Grid.Row="1"   HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
 
 
     </Grid>
