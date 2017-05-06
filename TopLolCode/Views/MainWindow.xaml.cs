@@ -23,7 +23,6 @@ namespace TopLolCode.Views
         public MainWindow()
         {
             InitializeComponent();
-
         }
     }
 }

@@ -7,9 +7,14 @@ namespace TopLolCode.ViewModels
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        Data _data;
         public MainWindowViewModel()
         {
             SingIN = new Command(SingIN_Executed, CanExecute);
+
+            _data = Data.DeserializeUserRegulations();
+
+            _data.StartTimer();
         }
 
         
@@ -30,6 +35,8 @@ namespace TopLolCode.ViewModels
         {
             // MessageBox.Show(_btnText);
             
+
+
         }
         
         

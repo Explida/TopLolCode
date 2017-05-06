@@ -12,6 +12,11 @@ namespace TopLolCode.ViewModels
 {
     public class FirstRunViewModel
     {
+
+        private string _parentID = string.Empty;
+        private string[] _lang ;
+
+
         public FirstRunViewModel()
         {
             OK = new Command(OK_Execute, CanExecute);
@@ -19,15 +24,15 @@ namespace TopLolCode.ViewModels
         }
 
         public ICommand OK { get; set; }
-        public string MainPass
+        public string ParentID
         {
             get
             {
-                return _mainPass;
+                return _parentID;
             }
             set
             {
-                _mainPass = value;
+                _parentID = value;
             }
         }
         public string[] Lang {
@@ -43,25 +48,30 @@ namespace TopLolCode.ViewModels
 
         private void OK_Execute(object param)
         {
+            var days = new List<string> { "Friday", "Monday", "Saturday", "Sunday", "Thursday", "Tuesday", "Wednesday" };
 
-           
+            var data = new Data()
+            {
+                BlockKeys = false,
+                FullScreen = false,
+                SelectedLang = "eng",
+                TestMode = true,
+                TimedShutdown = 5
+            };
+            data.AddRegulations(_parentID, "Parent", DateTime.MinValue, DateTime.MaxValue, int.MaxValue, days);
 
-            //var w = new MainWindow();
-            //w.Show();
+            data.SerializeUserRegulations();
 
-            //var t = App.Current.Windows;
-            //t[0].Close();
+
+
+            var w = new MainWindow();
+            w.Show();
+
+            var t = App.Current.Windows;
+            t[0].Close();
+            t[1].Close();
         }
-
         
-
-        private string _mainPass = string.Empty;
-        private string[] _lang ;
-        
-
-
-
-
         private bool CanExecute(object param) { return true; }
     }
 }

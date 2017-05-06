@@ -8,26 +8,36 @@ using System.Windows.Threading;
 
 namespace TopLolCode
 {
-    class UserTimer
+    public class UserTimer
     {
-        private int _durationTime = 0;
-        
+        private int _durationTime = 300;    //default time 5min
+        private DispatcherTimer _timer;
+        private bool _testMode = true;
+
+        public bool TestMode
+        {
+            get { return _testMode; }
+            private set { _testMode = value; }
+        }
         public int DurationTime
         {
             get { return (int)(_durationTime/60); }     //convert to min
-            set { _durationTime = value*60; }           //convert to sec
+            private set { _durationTime = value*60; }           //convert to sec
         }
         
         public UserTimer()
         {
-            _timer = new DispatcherTimer();
-            _timer.Interval = new TimeSpan(0, 0, 1);
+            _timer = new DispatcherTimer()
+            {
+                Interval = new TimeSpan(0, 0, 1)
+            };
             _timer.Tick += _timer_Tick;
-            
         }
 
-        public void TimerStart(int min)
+        public void TimerStart(int Minutes, bool TestMode)
         {
+            _durationTime = Minutes*60;
+            _testMode = TestMode;
             _timer.Start();
         }
 
@@ -38,19 +48,15 @@ namespace TopLolCode
 
         private void _timer_Tick(object sender, EventArgs e)
         {
-            if (_timerWork)
+            if (_durationTime > 0) _durationTime--;
+            else
             {
-                if (_durationTime >= 0) _durationTime--;
-                else
-                {
-                    Process.Start("notepad.exe");
-                    _timer.Stop();
-                }
+                if (_testMode) Process.Start("notepad.exe");
+                //else Process.Start("shutdown.exe");
+                _timer.Stop();
             }
         }
 
-        private DispatcherTimer _timer;
-        private bool _timerWork = true;
 
     }
 }

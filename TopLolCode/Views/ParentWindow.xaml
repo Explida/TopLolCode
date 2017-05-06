@@ -55,13 +55,13 @@
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="2"/>
                         </Grid.RowDefinitions>
-                        <ToggleButton x:Name="_Monday"     Content="Понедельник"    Grid.Row="0" VerticalAlignment="Center"/>
-                        <ToggleButton x:Name="_Tuesday"    Content="Вторник"        Grid.Row="2" VerticalAlignment="Center"/>
-                        <ToggleButton x:Name="_Wednesday"  Content="Среда"          Grid.Row="4" VerticalAlignment="Center"/>
-                        <ToggleButton x:Name="_Thursday"   Content="Четверг"        Grid.Row="6" VerticalAlignment="Center"/>
-                        <ToggleButton x:Name="_Friday"     Content="Пятница"        Grid.Row="8" VerticalAlignment="Center"/>
-                        <ToggleButton x:Name="_Saturday"   Content="Суббота"        Grid.Row="10" VerticalAlignment="Center"/>
-                        <ToggleButton x:Name="_Sunday"     Content="Воскресенье"    Grid.Row="12" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="Monday"     Content="Понедельник"    Grid.Row="0"  VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="Thursday"   Content="Вторник"        Grid.Row="2"  VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="Wednesday"  Content="Среда"          Grid.Row="4"  VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="Tuesday"    Content="Четверг"        Grid.Row="6"  VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="Friday"     Content="Пятница"        Grid.Row="8"  VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="Saturday"   Content="Суббота"        Grid.Row="10" VerticalAlignment="Center"/>
+                        <ToggleButton x:Name="Sunday"     Content="Воскресенье"    Grid.Row="12" VerticalAlignment="Center"/>
                     </Grid>
                 </GroupBox>
                 <Button x:Name="button" HorizontalAlignment="Left" Margin="260,35,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" Grid.Row="6" >

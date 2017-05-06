@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.IO;
 using TopLolCode.Views;
+using TopLolCode.Models;
 
 namespace TopLolCode
 {
@@ -26,18 +27,28 @@ namespace TopLolCode
         static void Main()
         {
             var app = new App();
-            //if (!Directory.Exists("Data"))
-            //{
-            //    Directory.CreateDirectory("Data");
-            //    if (!File.Exists("Data/Data.xml"))
+            if (!Directory.Exists("Data"))
+            {
+                Directory.CreateDirectory("Data");
+                
+            }
+            //if (!File.Exists("Data/Data.xml"))
             //    {
-            //        File.Create("Data/Data.xml");
 
-            //        var firstWindow = new FirstRunWindow();
-            //        app.Run(firstWindow);
             //    }
-            //}
-            
+
+
+            Data data;
+            try
+            {
+                data = Data.DeserializeUserRegulations();
+            }
+            catch(Exception ex)
+            {
+
+                var firstWindow = new FirstRunWindow();
+                app.Run(firstWindow);
+            }
 
             var mainWindow = new MainWindow();
             app.Run(mainWindow);
