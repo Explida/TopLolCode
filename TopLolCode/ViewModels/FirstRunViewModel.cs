@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using TopLolCode.Models;
@@ -15,7 +16,7 @@ namespace TopLolCode.ViewModels
 
         private string _parentID = string.Empty;
         private string[] _lang ;
-
+        private Data _data;
 
         public FirstRunViewModel()
         {
@@ -48,30 +49,48 @@ namespace TopLolCode.ViewModels
 
         private void OK_Execute(object param)
         {
-            var days = new List<string> { "Friday", "Monday", "Saturday", "Sunday", "Thursday", "Tuesday", "Wednesday" };
-
-            var data = new Data()
+            var days = new List<DayOfWeek>
             {
-                BlockKeys = false,
-                FullScreen = false,
-                SelectedLang = "eng",
-                TestMode = true,
-                TimedShutdown = 5
+                DayOfWeek.Monday,
+                DayOfWeek.Saturday,
+                DayOfWeek.Sunday,
+                DayOfWeek.Thursday,
+                DayOfWeek.Friday,
+                DayOfWeek.Tuesday,
+                DayOfWeek.Wednesday
             };
-            data.AddRegulations(_parentID, "Parent", DateTime.MinValue, DateTime.MaxValue, int.MaxValue, days);
+            _data = Data.GetSingleData();
+            _data.BlockKeys = false;
+            _data.FullScreen = false;
+            _data.SelectedLang = "eng";
+            _data.TestMode = true;
+            _data.TimedShutdown = 5;
+            
+            _data.AddRegulations(
+                _parentID,
+                "Parent",
+                DateTime.MinValue, 
+                DateTime.MaxValue,
+                int.MaxValue,
+                days);
 
-            data.SerializeUserRegulations();
+            _data.SerializeUserRegulations();
 
-
-
-            var w = new MainWindow();
-            w.Show();
-
-            var t = App.Current.Windows;
-            t[0].Close();
-            t[1].Close();
+            NextMainWindow();
         }
         
+        private void NextMainWindow()
+        {
+            var mainWindow = new MainWindow();
+            mainWindow.Show();
+
+            foreach ( var firstRunWindow in Application.Current.Windows)
+            {
+                if (firstRunWindow is FirstRunWindow)
+                    (firstRunWindow as FirstRunWindow).Close();
+            }
+        }
+
         private bool CanExecute(object param) { return true; }
     }
 }

@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using System.IO;
 using TopLolCode.Views;
 using TopLolCode.Models;
 
@@ -20,38 +14,25 @@ namespace TopLolCode
         {
             InitializeComponent();
         }
-
-
+        
 
         [STAThread]
         static void Main()
         {
             var app = new App();
-            if (!Directory.Exists("Data"))
-            {
-                Directory.CreateDirectory("Data");
-                
-            }
-            //if (!File.Exists("Data/Data.xml"))
-            //    {
-
-            //    }
-
-
-            Data data;
+            Window _startWind;
             try
             {
-                data = Data.DeserializeUserRegulations();
+                Data.DeserializeUserRegulations();
+                _startWind = new MainWindow();
             }
-            catch(Exception ex)
+            catch (Exception e)
             {
-
-                var firstWindow = new FirstRunWindow();
-                app.Run(firstWindow);
+                _startWind = new FirstRunWindow();
             }
 
-            var mainWindow = new MainWindow();
-            app.Run(mainWindow);
+            app.Run(_startWind);
+            
         }
     }
 }
