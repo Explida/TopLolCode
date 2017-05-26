@@ -1,140 +1,287 @@
-﻿<Window x:Class="TopLolCode.Views.ParentWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TopLolCode"
-        xmlns:ViewModels="clr-namespace:TopLolCode.ViewModels" 
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        mc:Ignorable="d"
-        Title="ParentWindow" Height="800" Width="800">
+﻿<Window
+    x:Class="TopLolCode.Views.ParentWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ViewModels="clr-namespace:TopLolCode.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TopLolCode"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    Title="ParentWindow"
+    Width="850"
+    Height="800"
+    mc:Ignorable="d">
     <Window.DataContext>
-        <ViewModels:ParentWindowViewModel/>
+        <ViewModels:ParentWindowViewModel />
     </Window.DataContext>
 
     <Grid x:Name="_main_grid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="250*"/>
-            <RowDefinition Height="250*"/>
-            <RowDefinition Height="150"/>
+            <RowDefinition Height="250*" />
+            <RowDefinition Height="250*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="400" />
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <GroupBox x:Name="groupBox"  Header="Создать правило" Grid.RowSpan="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+        <GroupBox
+            x:Name="groupBox"
+            Grid.RowSpan="2"
+            Header="Создать правило">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="45*"/>
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="10*" />
+                    <RowDefinition Height="45*" />
                 </Grid.RowDefinitions>
-                <TextBlock Text="ID правила"  
-                           FontSize="22" 
-                           FontWeight="Normal" 
-                           TextAlignment="Center" 
-                           HorizontalAlignment="Left" 
-                           Grid.Row="0" 
-                           VerticalAlignment="Center"/>
-                <TextBlock Text="Начало роботы правила"  FontSize="22" FontWeight="Normal" TextAlignment="Center" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBlock Text="Конец роботы правила"   FontSize="22" VerticalAlignment="Center" FontWeight="Normal" TextAlignment="Center" Grid.Row="3" HorizontalAlignment="Center"/>
-                <TextBlock Text="Продолжытельность(мин)" FontSize="22" HorizontalAlignment="Left"  VerticalAlignment="Center" FontWeight="Normal" Grid.Row="5"/>
-                <TextBox x:Name="textBox" Text="60" HorizontalAlignment="Right"  FontSize="22" MaxLines="1" TextAlignment="Center" FontWeight="Normal" UndoLimit="10" Grid.Row="5" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MinWidth="40" MinHeight="40"/>
+                <TextBlock
+                    Grid.Row="0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource Text}"
+                    Text="ID правила"
+                    TextAlignment="Center" />
+                <TextBox
+                    MinWidth="40"
+                    MinHeight="40"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Style="{DynamicResource Text}"
+                    Text="{Binding ID}"
+                    TextWrapping="Wrap" />
 
-                <xctk:DateTimePicker x:Name="_start_DateTime" FontWeight="Normal" Grid.Row="2" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <xctk:DateTimePicker x:Name="_end_DateTime"   FontWeight="Normal" Grid.Row="4" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource Text}"
+                    Text="Начало роботы правила"
+                    TextAlignment="Center" />
+                <TextBlock
+                    Grid.Row="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource Text}"
+                    Text="Конец роботы правила"
+                    TextAlignment="Center" />
+                <TextBlock
+                    Grid.Row="5"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Style="{DynamicResource Text}"
+                    Text="Продолжытельность(мин)" />
+                <TextBox
+                    x:Name="textBox"
+                    Grid.Row="5"
+                    MinWidth="40"
+                    MinHeight="40"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    MaxLines="1"
+                    Style="{DynamicResource Text}"
+                    Text="{Binding DurationTime}"
+                    TextAlignment="Center"
+                    UndoLimit="10" />
 
-                <GroupBox x:Name="_days_of_the_week" Header="Выбрать дни недели" HorizontalAlignment="Left" VerticalAlignment="Top" Width="245" FontSize="20" Grid.Row="6">
-                    <Grid >
+                <xctk:DateTimePicker
+                    x:Name="_start_DateTime"
+                    Grid.Row="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Style="{DynamicResource Text}" />
+                <xctk:DateTimePicker
+                    x:Name="_end_DateTime"
+                    Grid.Row="4"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Style="{DynamicResource Text}" />
+
+                <GroupBox
+                    x:Name="_days_of_the_week"
+                    Grid.Row="6"
+                    Width="245"
+                    HorizontalAlignment="Left"
+                    FontSize="20"
+                    Header="Выбрать дни недели">
+                    <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="2"/>
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2" />
+                            <RowDefinition Height="1*" />
+                            <RowDefinition Height="2" />
                         </Grid.RowDefinitions>
-                        <ToggleButton x:Name="_Monday"     Content="Понедельник"    Grid.Row="0"  VerticalAlignment="Center" Command="{Binding ToogleDays}" CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
-                        <ToggleButton x:Name="_Thursday"   Content="Вторник"        Grid.Row="2"  VerticalAlignment="Center" Command="{Binding ToogleDays}" CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
-                        <ToggleButton x:Name="_Wednesday"  Content="Среда"          Grid.Row="4"  VerticalAlignment="Center" Command="{Binding ToogleDays}" CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
-                        <ToggleButton x:Name="_Tuesday"    Content="Четверг"        Grid.Row="6"  VerticalAlignment="Center" Command="{Binding ToogleDays}" CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
-                        <ToggleButton x:Name="_Friday"     Content="Пятница"        Grid.Row="8"  VerticalAlignment="Center" Command="{Binding ToogleDays}" CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
-                        <ToggleButton x:Name="_Saturday"   Content="Суббота"        Grid.Row="10" VerticalAlignment="Center" Command="{Binding ToogleDays}" CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
-                        <ToggleButton x:Name="_Sunday"     Content="Воскресенье"    Grid.Row="12" VerticalAlignment="Center" Command="{Binding ToogleDays}" CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"/>
+                        <ToggleButton
+                            x:Name="_Monday"
+                            Grid.Row="0"
+                            Command="{Binding CommandToogleDays}"
+                            CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                            Content="Понедельник" />
+                        <ToggleButton
+                            x:Name="_Thursday"
+                            Grid.Row="2"
+                            Command="{Binding ToogleDays}"
+                            CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                            Content="Вторник" />
+                        <ToggleButton
+                            x:Name="_Wednesday"
+                            Grid.Row="4"
+                            Command="{Binding ToogleDays}"
+                            CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                            Content="Среда" />
+                        <ToggleButton
+                            x:Name="_Tuesday"
+                            Grid.Row="6"
+                            Command="{Binding ToogleDays}"
+                            CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                            Content="Четверг" />
+                        <ToggleButton
+                            x:Name="_Friday"
+                            Grid.Row="8"
+                            Command="{Binding ToogleDays}"
+                            CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                            Content="Пятница" />
+                        <ToggleButton
+                            x:Name="_Saturday"
+                            Grid.Row="10"
+                            Command="{Binding ToogleDays}"
+                            CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                            Content="Суббота" />
+                        <ToggleButton
+                            x:Name="_Sunday"
+                            Grid.Row="12"
+                            Command="{Binding ToogleDays}"
+                            CommandParameter="{Binding Mode=OneWay, RelativeSource={RelativeSource Self}}"
+                            Content="Воскресенье" />
 
                     </Grid>
                 </GroupBox>
-                <Button x:Name="button" Command="{Binding SaveReg}" HorizontalAlignment="Left" Margin="260,35,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" Grid.Row="6" >
-                    <TextBlock Text="Сохранить правило" TextWrapping="Wrap" TextAlignment="Center"/>
+                <Button
+                    Grid.Row="6"
+                    Width="118"
+                    Height="77"
+                    Margin="260,10,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Command="{Binding CommandSaveReg}"
+                    FontSize="16">
+                    <TextBlock
+                        Text="Сохранить правило"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
                 </Button>
-                <Button x:Name="button1" Command="{Binding DelReg}" HorizontalAlignment="Left" Margin="260,117,0,0" VerticalAlignment="Top" Width="96" Height="77" FontSize="16" Grid.Row="6" CommandParameter="{Binding SelectedItem, ElementName=dataGrid}" >
-                    <TextBlock Text="Del правило" TextWrapping="Wrap" TextAlignment="Center"/>
+                <Button
+                    Grid.Row="6"
+                    Width="118"
+                    Height="77"
+                    Margin="260,116,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Command="{Binding CommandDelReg}"
+                    CommandParameter="{Binding SelectedItem, ElementName=dataGrid}"
+                    FontSize="16">
+                    <TextBlock
+                        Text="Удалить правило"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
                 </Button>
-                <TextBox HorizontalAlignment="Right" TextWrapping="Wrap"  VerticalAlignment="Center" MinWidth="40" MinHeight="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" />
+                <Button
+                    Grid.Row="6"
+                    Width="118"
+                    Height="77"
+                    Margin="260,227.03,0,0"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Command="{Binding CommandSettings}"
+                    FontSize="16">
+                    <TextBlock
+                        Text="Настройки"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
+                </Button>
 
             </Grid>
         </GroupBox>
-        <GroupBox Header="Список правил" Grid.Column="1"      HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-            <DataGrid x:Name="dataGrid"  HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding _regulat}" FontSize="16" FontWeight="Normal" CanUserReorderColumns="False" CanUserSortColumns="False" CanUserResizeColumns="False" SelectionMode="Single" CanUserAddRows="False"/>
-        </GroupBox>
-        
-        <GroupBox Grid.Column="1" Header="Дополнительно"  Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="15*"/>
-                    <ColumnDefinition Width="70*"/>
-                    <ColumnDefinition Width="15*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="15*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="10*"/>
-                    <RowDefinition Height="15*"/>
-                </Grid.RowDefinitions>
 
-                <TextBlock Text="Select languages" Grid.Column="1" Grid.Row="2" FontSize="20" Width="200" HorizontalAlignment="Left"  />
-                <TextBlock Text="Test mode" Grid.Column="1" Grid.Row="3" FontSize="20" Width="200" HorizontalAlignment="Left"  />
-                <TextBlock Text="" Grid.Column="1" Grid.Row="5" FontSize="20" HorizontalAlignment="Center"  />
-                <CheckBox  Content="" Grid.Column="1" HorizontalAlignment="Right"  Grid.Row="3" VerticalAlignment="Center" Height="37" Width="39" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsChecked="True" IsEnabled="False"/>
-                <ComboBox    Grid.Column="1" Grid.Row="2" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" HorizontalAlignment="Right" VerticalAlignment="Center" MinWidth="60" Panel.ZIndex="30" IsReadOnly="True" DisplayMemberPath="{Binding /}" ItemsSource="{Binding Lang}" IsEnabled="False" />
-
-            </Grid>
+        <GroupBox Grid.Column="1" Header="Список правил">
+            <DataGrid
+                x:Name="dataGrid"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                CanUserAddRows="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="False"
+                CanUserSortColumns="False"
+                FontSize="16"
+                FontWeight="Normal"
+                IsSynchronizedWithCurrentItem="False"
+                ItemsSource="{Binding Regulat, Mode=OneWay}"
+                SelectionMode="Single" />
         </GroupBox>
-        
-        <GroupBox Grid.ColumnSpan="2" Header="Лог вкл/выкл" Grid.Row="2" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-            <DataGrid HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+
+        <GroupBox
+            Grid.Row="1"
+            Grid.Column="2"
+            Header="Лог вкл/выкл">
+            <DataGrid HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" />
         </GroupBox>
 
     </Grid>
     <Window.Resources>
         <Style TargetType="ToggleButton">
-            <Setter Property="VerticalAlignment" Value="Top" />
-            <Setter Property="FontSize"          Value="16" />
-            <Setter Property="FontWeight"        Value="Normal" />
-            <Setter Property="IsChecked"         Value="True"/>
-            <Setter Property="Background"        Value="#FF1A8509"/>
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="IsChecked" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsChecked" Value="True">
+                    <Setter Property="Background" Value="Green" />
+                </Trigger>
+                <Trigger Property="IsChecked" Value="False">
+                    <Setter Property="Background" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="GroupBox">
-            <Setter Property="FontSize" Value="22"/>
-            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="22" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        </Style>
+
+        <Style x:Key="Text">
+            <Setter Property="TextBlock.FontSize" Value="20" />
+            <Setter Property="TextBlock.FontWeight" Value="Normal" />
         </Style>
     </Window.Resources>
 

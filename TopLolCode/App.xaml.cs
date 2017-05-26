@@ -23,7 +23,7 @@ namespace TopLolCode
             Window _startWind;
             try
             {
-                Data.DeserializeUserRegulations();
+                Data.DeserializeData();
                 _startWind = new MainWindow();
             }
             catch (Exception e)

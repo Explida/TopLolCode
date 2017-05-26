@@ -8,36 +8,35 @@ using TopLolCode.Views;
 
 namespace TopLolCode.ViewModels
 {
-    public class MainWindowViewModel : INotifyPropertyChanged
+    public class MainWindowViewModel 
     {
         Data _data;
+
         public MainWindowViewModel()
         {
-            SingIN = new Command(SingIN_Executed, CanExecute);
+            CommandSingIN = new Command(SingIN_Executed, CanExecute);
 
             _data = Data.GetSingleData();
             _data.StartTimer();
         }
-
         
-        public ICommand SingIN { get; set; }
-        public string BtnText
+        public Command CommandSingIN { get; set; }
+        public string SingIN_ID
         {
-            get { return _btnText; }
+            get { return _singIN_ID; }
             set
             {
-                _btnText = value;
-                OnPropertyChanged();
+                _singIN_ID = value;
             }
         }
         
-        private string _btnText = string.Empty;
+        private string _singIN_ID = string.Empty;
 
         private void SingIN_Executed(object param)
         {
             // MessageBox.Show(_btnText);
             Window nextWind = null;
-            var t = _data.StartTimer(_btnText);
+            var t = _data.StartTimer(_singIN_ID);
 
             switch (t)
             {
@@ -58,13 +57,7 @@ namespace TopLolCode.ViewModels
             }
         }
         
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
-
+        
         private bool CanExecute(object param) { return true; }
     }
 }

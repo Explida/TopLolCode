@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using TopLolCode.Models;
 using TopLolCode.Views;
@@ -49,7 +45,7 @@ namespace TopLolCode.ViewModels
 
         private void OK_Execute(object param)
         {
-            var days = new List<DayOfWeek>
+            var days = new ObservableCollection<DayOfWeek>
             {
                 DayOfWeek.Monday,
                 DayOfWeek.Saturday,
@@ -74,7 +70,7 @@ namespace TopLolCode.ViewModels
                 int.MaxValue,
                 days);
 
-            _data.SerializeUserRegulations();
+            _data.SerializeData();
 
             NextMainWindow();
         }

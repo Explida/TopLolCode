@@ -1,79 +1,51 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
+using System.Windows;
 using System.Windows.Controls.Primitives;
 using TopLolCode.Models;
+using TopLolCode.Views;
 
 namespace TopLolCode.ViewModels
 {
-    public class ParentWindowViewModel: INotifyPropertyChanged
+    public class ParentWindowViewModel 
     {
         private Data _data;
 
-        public int TimedShutdown
-        {
-            get { return _data.TimedShutdown; }
-            set { _data.TimedShutdown = value; }
-        }
-        public bool TestMode
-        {
-            get { return _data.TestMode; }
-            set { _data.TestMode = value; }
-        }
-        public bool FullScreen
-        {
-            get { return _data.FullScreen; }
-            set { _data.FullScreen = value; }
-        }
-        public bool BlockKeys
-        {
-            get { return _data.BlockKeys; }
-            set { _data.BlockKeys = value; }
-        }
-        public string SelectedLang
-        {
-            get { return _data.SelectedLang; }
-            set { _data.SelectedLang = value; }
-        }
 
-        public string ID { get => _ID; set => _ID = value; }
+        public string ID { get => _ID; set { _ID = value; } }
         //public string Access { get => _access; set => _access = value; }
         public DateTime StartDate { get => _startDate; set => _startDate = value; }
         public DateTime EndDate { get => _endDate; set => _endDate = value; }
         public int DurationTime { get => _durationTime; set => _durationTime = value; }
-        public List<DayOfWeek> Days { get => _days; set => _days = value; }
+        //public ObservableCollection<DayOfWeek> Days { get => _days; set => _days = value; }
 
-        public List<UserType> _regulat { get { return _data.Regulations; } }
+        public ObservableCollection<UserType> Regulat { get { return _data.Regulations;}}
 
-        public Command SaveReg { get => _saveReg; set => _saveReg = value; }
-        public Command DelReg { get => _delReg; set => _delReg = value; }
-        public Command ToogleDays { get { return _toogleDays; } set { _toogleDays = value; } }
-
+        
         private string _ID;
         private string _access = "Child";
         private DateTime _startDate;
         private DateTime _endDate;
         private int _durationTime;
-        private List<DayOfWeek> _days;
+        private ObservableCollection<DayOfWeek> _days;
 
-        private Command _saveReg;
-        private Command _delReg;
-        private Command _toogleDays;
+        public Command CommandSaveReg { get => _commandSaveReg  ; set => _commandSaveReg = value; }
+        public Command CommandDelReg { get => _commandDelReg; set => _commandDelReg = value; }
+        public Command CommandSettings { get => _commandSettings; set => _commandSettings = value; }
+        public Command CommandToogleDays { get { return _commandToogleDays; } set { _commandToogleDays = value; } }
 
+        private Command _commandSaveReg;
+        private Command _commandDelReg;
+        private Command _commandSettings;
+        private Command _commandToogleDays;
+        
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-        }
 
 
         public ParentWindowViewModel()
         {
             _data = Data.GetSingleData();
-            _days = new List<DayOfWeek>
+            _days = new ObservableCollection<DayOfWeek>
             {
                 DayOfWeek.Monday,
                 DayOfWeek.Saturday,
@@ -83,15 +55,10 @@ namespace TopLolCode.ViewModels
                 DayOfWeek.Tuesday,
                 DayOfWeek.Wednesday};
 
-            _saveReg = new Command(SaveRegular, CanExecute);
-            _delReg = new Command(DelRegular, CanExecute);
-            _toogleDays = new Command(ToogleDaysM, CanExecute);
-        }
-
-        private void DelRegular(object param)
-        {
-            var t = (UserType)param;
-            _data.RemoveRegulations(t.ID);
+            _commandSaveReg = new Command(SaveRegular, CanExecute);
+            _commandDelReg = new Command(DelRegular, CanExecute);
+            _commandSettings = new Command(Settings, CanExecute);
+            _commandToogleDays = new Command(ToogleDays, CanExecute);
         }
 
         private void SaveRegular(object param)
@@ -99,21 +66,48 @@ namespace TopLolCode.ViewModels
             if (_data.FindID(_ID)) return; // исключение: уже есть такой идентификатор
 
             _data.AddRegulations(
-                _ID, 
-                _access, 
-                _startDate, 
-                _endDate, 
-                _durationTime, 
+                _ID,
+                _access,
+                _startDate,
+                _endDate,
+                _durationTime,
                 _days);
+
+            _data.SerializeData();
         }
 
-        private void ToogleDaysM(object param)
+        private void DelRegular(object param)
+        {
+            var t = (UserType)param;
+            _data.RemoveRegulations(t.ID);
+            _data.SerializeData();
+        }
+
+        private void Settings(object param)
+        {
+            var window = new SettingsWindow();
+            window.Show();
+
+            foreach (var firstRunWindow in Application.Current.Windows)
+            {
+                if (firstRunWindow is ParentWindow)
+                    (firstRunWindow as ParentWindow).Close();
+            }
+        }
+
+        private void ToogleDays(object param)
         {
             var a = (ToggleButton)param;
             var day = a.Name.Remove(0, 1);
             DayOfWeek d = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), day);
-            if (a.IsChecked == true) _days.Add(d);
-            if (a.IsChecked == false) _days.Remove(d);
+            if (a.IsChecked == true)
+            {
+                _days.Add(d);
+            }
+            if (a.IsChecked == false)
+            {
+                _days.Remove(d);
+            }
         }
         
         private bool CanExecute(object param) { return true; }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace TopLolCode.Models
 {
@@ -16,8 +13,9 @@ namespace TopLolCode.Models
         private bool _fullScreen;
         private bool _blockKeys;
         private string _selectedLang;
-        private List<UserType> _regulations;
+        private ObservableCollection<UserType> _regulations;
         private UserTimer _timer;
+        private ManagerDateTime _serverDateTime;
 
         [XmlAttribute]
         public int TimedShutdown
@@ -49,15 +47,17 @@ namespace TopLolCode.Models
             get { return _selectedLang; }
             set { _selectedLang = value; }
         }
+        [XmlAttribute]
+        public ManagerDateTime ServerDateTime1 { get => _serverDateTime; set => _serverDateTime = value; }
 
-        public List<UserType> Regulations
+        public ObservableCollection<UserType> Regulations
         {
             get { return _regulations; }
             private set { _regulations = value; }
         }
 
-
-        public void AddRegulations(string ID, string Access, DateTime Start, DateTime End, int Duration, List<DayOfWeek> Days)
+        
+        public void AddRegulations(string ID, string Access, DateTime Start, DateTime End, int Duration, ObservableCollection<DayOfWeek> Days)
         {
             var newRegulations = new UserType()
             {
@@ -76,7 +76,7 @@ namespace TopLolCode.Models
         {
             foreach (var t in _regulations)
             {
-                if (t.ID == ID && t.Access != "Parent")
+                if (t.ID.Equals(ID) && t.Access != "Parent")
                 {
                     _regulations.Remove(t);
                     return;
@@ -86,9 +86,10 @@ namespace TopLolCode.Models
 
         public bool FindID(string ID)
         {
+            if (ID == null) return false;
             foreach (var t in _regulations)
             {
-                if (ID == t.ID)
+                if (ID.Equals(t.ID))
                 {
                     return true;
                 }
@@ -124,20 +125,19 @@ namespace TopLolCode.Models
         }
 
 
+        private Data()
+        {
+            _regulations = new ObservableCollection<UserType>();
+            _timer = new UserTimer();
+        }
+
         public static Data GetSingleData()
         {
             if (_singleData == null) _singleData = new Data();
             return _singleData;
         }
 
-        private Data()
-        {
-            _regulations = new List<UserType>();
-            _timer = new UserTimer();
-        }
-
-
-        public static Data DeserializeUserRegulations()
+        public static Data DeserializeData()
         {
             try
             {
@@ -155,7 +155,7 @@ namespace TopLolCode.Models
             }
         }
 
-        public void SerializeUserRegulations()
+        public void SerializeData()
         {
             try
             {
@@ -163,7 +163,6 @@ namespace TopLolCode.Models
                 {
                     var deser = new XmlSerializer(typeof(Data));
                     deser.Serialize(sw, this);
-
                 }
             }
             catch(Exception ex)

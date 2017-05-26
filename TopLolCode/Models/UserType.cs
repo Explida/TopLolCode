@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Xml.Serialization;
 
 namespace TopLolCode
@@ -12,6 +12,6 @@ namespace TopLolCode
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public int DurationTime { get; set; }
-        public List<DayOfWeek> Days { get; set; }  // дни недели
+        public ObservableCollection<DayOfWeek> Days { get; set; }  // дни недели
     }
 }

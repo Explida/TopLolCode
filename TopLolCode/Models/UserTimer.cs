@@ -10,9 +10,9 @@ namespace TopLolCode
 {
     public class UserTimer
     {
-        private int _durationTime = 300;    //default time 5min
+        private int _durationTime;    //default time 5min
         private DispatcherTimer _timer;
-        private bool _testMode = true;
+        private bool _testMode;
 
         public bool TestMode
         {
